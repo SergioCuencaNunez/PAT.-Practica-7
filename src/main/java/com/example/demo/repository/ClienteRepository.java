@@ -21,15 +21,15 @@ public interface ClienteRepository extends CrudRepository<Cliente, String> {
 
     @Query("UPDATE CLIENTE SET CLIENTE.NOMBRE= :nombre , CLIENTE.APELLIDO1= :apellido1 , CLIENTE.APELLIDO2= :apellido2 WHERE CLIENTE.NIF= :nif ")
     @Modifying
-    void updateClienteNombreCompletoByNif(@Param("nombre") String nombre, @Param("apellido1") String apellido1, @Param("apellido2") String apellido2, @Param("nif") String nif);
+    void updateClienteNombreCompletoByNif(String nombre, String apellido1, String apellido2, String nif);
 
     @Query("UPDATE CLIENTE SET CLIENTE.CORREO= :correo WHERE CLIENTE.NIF= :nif ")
     @Modifying
-    void updateClienteCorreoByNif(@Param("correo") String correo, @Param("nif") String nif);
+    void updateClienteCorreoByNif(String correo, String nif);
 
     @Query("UPDATE CLIENTE SET CLIENTE.CUMPLEANOS= :cumpleanos WHERE CLIENTE.NIF= :nif ")
     @Modifying
-    void updateClienteCumpleanosByNif(@Param("cumpleanos") LocalDate cumpleanos, @Param("nif") String nif);
+    void updateClienteCumpleanosByNif(LocalDate cumpleanos, String nif);
 
     @Query("INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDO1, APELLIDO2, CORREO, CUMPLEANOS) VALUES (:nif,:nombre,:apellido1,:apellido2,:correo,:cumpleanos)")
     @Modifying

@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Cliente;
-import com.example.demo.repository.ClienteRepository;
-import com.example.demo.service.ClienteService;
+import com.example.demo.model.Hotel;
+import com.example.demo.repository.HotelRepository;
+import com.example.demo.service.HotelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,95 +11,98 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 import java.util.List;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/v1")
-public class ClienteController {
+public class HotelController {
 
     @Autowired
-    private ClienteService clienteServicio;
+    private HotelService hotelServicio;
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private HotelRepository hotelRepository;
 
     @Transactional
-    @GetMapping("/clientes/nif/{nif}")
-    public ResponseEntity<Cliente> getClienteNif(@PathVariable("nif") String nif) {
-        Cliente cliente= clienteServicio.getClienteByNif(nif);
-        if(cliente != null){
-            return ResponseEntity.ok().body(cliente);
+    @GetMapping("/hoteles/nombre/{nombre}")
+    public ResponseEntity<Hotel> getHotelNombre(@PathVariable("nombre") String nombre) {
+        Hotel hotel= hotelServicio.getHotelByNombre(nombre);
+        if(hotel != null){
+            return ResponseEntity.ok().body(hotel);
         }
         return ResponseEntity.notFound().build();
     }
 
     @Transactional
-    @GetMapping("/clientes/nombre/{nombre}/{apellido1}/{apellido2}")
-    public ResponseEntity<Cliente> getClienteNombreCompleto(@PathVariable("nombre") String nombre, @PathVariable("apellido1") String apellido1,@PathVariable("apellido2") String apellido2){
-        Cliente cliente = clienteServicio.getClientebyNombreCompleto(nombre,apellido1,apellido2);
-        return ResponseEntity.ok().body(cliente);
+    @GetMapping("/hoteles/destino/{destino}")
+    public ResponseEntity<List<Hotel>> getHotelesDestino(@PathVariable("destino") String destino){
+        List<Hotel> hoteles = hotelServicio.getHotelesbyDestino(destino);
+        return ResponseEntity.ok().body(hoteles);
     }
 
     @Transactional
-    @GetMapping("/clientes/correo/{correo}")
-    public ResponseEntity<Cliente> getClienteCorreo(@PathVariable("correo") String correo){
-        Cliente cliente = clienteServicio.getClientebyCorreo(correo);
-        return ResponseEntity.ok().body(cliente);
+    @GetMapping("/hoteles/estado/{estado}")
+    public ResponseEntity<List<Hotel>> getHotelesEstado(@PathVariable("estado") String estadoStr){
+        Boolean estado = Boolean.parseBoolean(estadoStr);
+        List<Hotel> hoteles = hotelServicio.getHotelesbyEstado(estado);
+        return ResponseEntity.ok().body(hoteles);
     }
 
     @Transactional
-    @GetMapping("/clientes")
-    public ResponseEntity<List<Cliente>> getClientes() {
-        List<Cliente> clientes = clienteServicio.getClientes();
-        return ResponseEntity.ok().body(clientes);
+    @GetMapping("/hoteles")
+    public ResponseEntity<List<Hotel>> getAllHoteles() {
+        List<Hotel> hoteles = hotelServicio.getHoteles();
+        return ResponseEntity.ok().body(hoteles);
     }
 
     @Transactional
-    @GetMapping("/clientes/update/nombre/{nif}/{nombre}/{apellido1}/{apellido2}")
-    public ResponseEntity<Cliente> updateClienteNombreNif(@PathVariable("nif") String nif, @PathVariable("nombre") String nombre, @PathVariable("apellido1") String apellido1,@PathVariable("apellido2") String apellido2) {
-        Cliente cliente= clienteServicio.updateClienteNombreCompletobyNif(nif,nombre,apellido1,apellido2);
-        if(cliente != null){
-            return ResponseEntity.ok().body(cliente);
+    @GetMapping("/hoteles/update/capacidad/{nombre}/{capacidad}")
+    public ResponseEntity<Hotel> updateHotelCapacidadNombre(@PathVariable("nombre") String nombre, @PathVariable("capacidad") String capacidadStr) {
+        Long capacidad = Long.parseLong(capacidadStr);
+        Hotel hotel= hotelServicio.updateHotelCapacidadbyNombre(nombre,capacidad);
+        if(hotel != null){
+            return ResponseEntity.ok().body(hotel);
         }
         return ResponseEntity.notFound().build();
     }
 
     @Transactional
-    @GetMapping("/clientes/update/correo/{nif}/{correo}")
-    public ResponseEntity<Cliente> updateClienteCorreoNif(@PathVariable("nif") String nif, @PathVariable("correo") String correo) {
-        Cliente cliente= clienteServicio.updateClienteCorreobyNif(nif,correo);
-        if(cliente != null){
-            return ResponseEntity.ok().body(cliente);
+    @GetMapping("/hoteles/update/ocupacion/{nombre}/{ocupacion}")
+    public ResponseEntity<Hotel> updateHotelOcupacionNombre(@PathVariable("nombre") String nombre, @PathVariable("ocupacion") String ocupacionStr) {
+        Long ocupacion = Long.parseLong(ocupacionStr);
+        Hotel hotel= hotelServicio.updateHotelOcupacionbyNombre(nombre,ocupacion);
+        if(hotel != null){
+            return ResponseEntity.ok().body(hotel);
         }
         return ResponseEntity.notFound().build();
     }
 
     @Transactional
-    @GetMapping("/clientes/update/cumpleanos/{nif}/{cumpleanos}")
-    public ResponseEntity<Cliente> updateClienteCumpleanosNif(@PathVariable("nif") String nif, @PathVariable("cumpleanos") String cumpleanosStr) {
-        LocalDate cumpleanos = LocalDate.parse(cumpleanosStr);
-        Cliente cliente= clienteServicio.updateClienteCumpleanosbyNif(nif,cumpleanos);
-        if(cliente != null){
-            return ResponseEntity.ok().body(cliente);
+    @GetMapping("/hoteles/update/estado/{nombre}/{estado}")
+    public ResponseEntity<Hotel> updateHotelEstadoNombre(@PathVariable("nombre") String nombre, @PathVariable("estado") String estadoStr) {
+        Boolean estado = Boolean.parseBoolean(estadoStr);
+        Hotel hotel= hotelServicio.updateHotelEstadobyNombre(nombre,estado);
+        if(hotel != null){
+            return ResponseEntity.ok().body(hotel);
         }
         return ResponseEntity.notFound().build();
     }
 
     @Transactional
-    @GetMapping("/clientes/insert/{nif}/{nombre}/{apellido1}/{apellido2}/{correo}/{cumpleanos}")
-    public ResponseEntity<String> insertCompareCliente(@PathVariable("nif") String nif, @PathVariable("nombre") String nombre, @PathVariable("apellido1") String apellido1,@PathVariable("apellido2") String apellido2,@PathVariable("correo") String correo,@PathVariable("cumpleanos") String cumpleanosStr) {
-        LocalDate cumpleanos = LocalDate.parse(cumpleanosStr);
-        String resultado = clienteServicio.insertAndCompareCliente(nif,nombre,apellido1,apellido2,correo,cumpleanos);
+    @GetMapping("/hoteles/insert/{nombre}/{destino}/{capacidad}/{ocupacion}/{estado}")
+    public ResponseEntity<String> insertCompareHotel(@PathVariable("nombre") String nombre, @PathVariable("destino") String destino, @PathVariable("capacidad") String capacidadStr,@PathVariable("ocupacion") String ocupacionStr,@PathVariable("estado") String estadoStr) {
+        Long capacidad = Long.parseLong(capacidadStr);
+        Long ocupacion = Long.parseLong(ocupacionStr);
+        Boolean estado = Boolean.parseBoolean(estadoStr);
+        String resultado = hotelServicio.insertAndCompareHotel(nombre,destino,capacidad,ocupacion,estado);
         return ResponseEntity.ok().body(resultado);
     }
 
     @Transactional
-    @GetMapping("/clientes/delete/{nif}")
-    public ResponseEntity<String> deleteClienteNif(@PathVariable("nif") String nif) {
-        String resultado = clienteServicio.deleteClientebyNif(nif);
+    @GetMapping("/hoteles/delete/{nombre}")
+    public ResponseEntity<String> deleteHotelNombre(@PathVariable("nombre") String nombre) {
+        String resultado = hotelServicio.deleteHotelbyNombre(nombre);
         return ResponseEntity.ok().body(resultado);
     }
-
 }

@@ -50,7 +50,7 @@ public class ClienteController {
 
     @Transactional
     @GetMapping("/clientes")
-    public ResponseEntity<List<Cliente>> getClientes() {
+    public ResponseEntity<List<Cliente>> getAllClientes() {
         List<Cliente> clientes = clienteServicio.getClientes();
         return ResponseEntity.ok().body(clientes);
     }

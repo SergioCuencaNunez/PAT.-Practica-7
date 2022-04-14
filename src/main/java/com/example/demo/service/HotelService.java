@@ -1,20 +1,18 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Cliente;
+import com.example.demo.model.Hotel;
 
-import java.time.LocalDate;
-import java.util.Iterator;
 import java.util.List;
 
-public interface ClienteService {
+public interface HotelService {
 
-    Cliente getClienteByNif(String nif);
-    Cliente getClientebyNombreCompleto(String nombre, String apellido1, String apellido2);
-    Cliente getClientebyCorreo(String correo);
-    List<Cliente> getClientes();
-    Cliente updateClienteNombreCompletobyNif(String nif, String nombre, String apellido1, String apellido2);
-    Cliente updateClienteCorreobyNif(String nif, String correo);
-    Cliente updateClienteCumpleanosbyNif(String nif, LocalDate cumpleanos);
-    String insertAndCompareCliente(String nif, String nombre, String apellido1, String apellido2, String correo, LocalDate cumpleanos);
-    String deleteClientebyNif(String nif);
+    Hotel getHotelByNombre(String nombre);
+    List<Hotel> getHotelesbyDestino(String destino);
+    List<Hotel> getHotelesbyEstado(Boolean estado);
+    List<Hotel> getHoteles();
+    Hotel updateHotelCapacidadbyNombre(String nombre, Long capacidad);
+    Hotel updateHotelOcupacionbyNombre(String nombre, Long ocupacion);
+    Hotel updateHotelEstadobyNombre(String nombre, Boolean estado);
+    String insertAndCompareHotel(String nombre, String destino, Long capacidad, Long ocupacion, Boolean estado);
+    String deleteHotelbyNombre(String nombre);
 }
