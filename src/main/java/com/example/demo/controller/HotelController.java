@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Cliente;
 import com.example.demo.model.Hotel;
-import com.example.demo.repository.HotelRepository;
 import com.example.demo.service.HotelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,6 @@ public class HotelController {
 
     @Autowired
     private HotelService hotelServicio;
-
-    @Autowired
-    private HotelRepository hotelRepository;
 
     @Transactional
     @GetMapping("/hoteles/nombre/{nombre}")

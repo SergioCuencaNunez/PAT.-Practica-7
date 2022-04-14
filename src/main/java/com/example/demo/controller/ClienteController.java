@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Cliente;
-import com.example.demo.repository.ClienteRepository;
 import com.example.demo.service.ClienteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteServicio;
-
-    @Autowired
-    private ClienteRepository clienteRepository;
 
     @Transactional
     @GetMapping("/clientes/nif/{nif}")
