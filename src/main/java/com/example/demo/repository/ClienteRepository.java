@@ -35,5 +35,4 @@ public interface ClienteRepository extends CrudRepository<Cliente, String> {
     @Modifying
     void insertCliente(String nif, String nombre, String apellido1, String apellido2, String correo, LocalDate cumpleanos);
 
-
 }
