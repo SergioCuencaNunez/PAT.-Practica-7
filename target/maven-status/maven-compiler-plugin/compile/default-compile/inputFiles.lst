@@ -2,6 +2,7 @@
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/controller/ReservaController.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/model/Cliente.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/impl/HotelServiceImpl.java
+/Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/dto/ClienteReservaDTO.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/repository/ClienteRepository.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/controller/HotelController.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/ReservaService.java
@@ -15,7 +16,9 @@
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/repository/HotelRepository.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/HabitacionService.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/model/Habitacion.java
+/Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/dto/ReservasDTO.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/impl/ReservaServiceImpl.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/ClienteService.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/model/Reserva.java
+/Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/dto/ClienteDTO.java
 /Users/sergiocuencanunez/Documents/ICAI/3º GITT+BA/Asignaturas/2º Cuatrimestre/PAT | Programación de Aplicaciones Telemáticas/Prácticas/Práctica 7/src/main/java/com/example/demo/service/impl/ClienteServiceImpl.java

@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.model.Cliente;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.service.ClienteService;
+import com.example.demo.service.dto.ClienteReservaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     @Transactional
@@ -124,5 +128,36 @@ public class ClienteServiceImpl implements ClienteService {
         }else{
             return "No hay ningún cliente con NIF " + nif;
         }
+    }
+
+    // INNER-JOIN
+    @Override
+    public List<ClienteReservaDTO> getClientesConReservas(){
+
+        String query = """ 
+        SELECT CLIENTE.NIF, CLIENTE.NOMBRE, CLIENTE.APELLIDO1, CLIENTE.APELLIDO2, CLIENTE.CORREO, RESERVA.ID, RESERVA.HOTEL, RESERVA.DESTINO, RESERVA.HUESPEDES, RESERVA.HABITACIONES, RESERVA.FECHAENTRADA, RESERVA.FECHASALIDA
+        FROM RESERVA
+        INNER JOIN CLIENTE ON CLIENTE.NIF=RESERVA.NIF;
+        """;
+
+        List<ClienteReservaDTO> clientesLista = jdbcTemplate.query(
+                query,
+                (rs, rowNum) ->
+                        new ClienteReservaDTO(
+                                rs.getString("NIF"),
+                                rs.getString("NOMBRE"),
+                                rs.getString("APELLIDO1"),
+                                rs.getString("APELLIDO2"),
+                                rs.getString("CORREO"),
+                                rs.getLong("ID"),
+                                rs.getString("HOTEL"),
+                                rs.getString("DESTINO"),
+                                rs.getLong("HUESPEDES"),
+                                rs.getLong("HABITACIONES"),
+                                (rs.getTimestamp("FECHAENTRADA")!=null) ? rs.getTimestamp("FECHAENTRADA").toLocalDateTime() : null,
+                                (rs.getTimestamp("FECHASALIDA")!=null) ? rs.getTimestamp("FECHASALIDA").toLocalDateTime() : null
+                        )
+        );
+        return clientesLista;
     }
 }

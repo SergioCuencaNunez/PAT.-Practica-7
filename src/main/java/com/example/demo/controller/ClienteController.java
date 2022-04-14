@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.service.ClienteService;
+import com.example.demo.service.dto.ClienteReservaDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -95,6 +96,14 @@ public class ClienteController {
     public ResponseEntity<String> deleteClienteNif(@PathVariable("nif") String nif) {
         String resultado = clienteServicio.deleteClientebyNif(nif);
         return ResponseEntity.ok().body(resultado);
+    }
+
+    // INNER-JOIN
+    @Transactional
+    @GetMapping("/clientes/reservas")
+    public ResponseEntity<List<ClienteReservaDTO>> getClientesReservas() {
+        var reservas = clienteServicio.getClientesConReservas();
+        return ResponseEntity.ok().body(reservas);
     }
 
 }

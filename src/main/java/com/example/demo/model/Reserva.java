@@ -22,8 +22,8 @@ import java.time.LocalTime;
 public class Reserva {
     private @Column("ID") @Id Long id;
     private @Column("NIF") String nif;
-    private @Column("DESTINO") String destino;
     private @Column("HOTEL") String hotel;
+    private @Column("DESTINO") String destino;
     private @Column("HUESPEDES") Long huespedes;
     private @Column("HABITACIONES") Long habitaciones;
     private @Column("FECHAENTRADA") LocalDate fechaEntrada;
