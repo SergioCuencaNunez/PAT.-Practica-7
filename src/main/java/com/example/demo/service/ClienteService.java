@@ -16,4 +16,5 @@ public interface ClienteService {
     Cliente updateClienteCorreobyNif(String nif, String correo);
     Cliente updateClienteCumpleanosbyNif(String nif, LocalDate cumpleanos);
     String insertAndCompareCliente(String nif, String nombre, String apellido1, String apellido2, String correo, LocalDate cumpleanos);
+    String deleteClientebyNif(String nif);
 }

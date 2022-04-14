@@ -31,8 +31,9 @@ public interface ClienteRepository extends CrudRepository<Cliente, String> {
     @Modifying
     void updateClienteCumpleanosByNif(@Param("cumpleanos") LocalDate cumpleanos, @Param("nif") String nif);
 
-    @Query("INSERT INTO `CLIENTE` (NIF, NOMBRE, APELLIDO1, APELLIDO2, CORREO, CUMPLEANOS) VALUES (:nif,:nombre,:apellido1,:apellido2,:correo,:cumpleanos)")
+    @Query("INSERT INTO CLIENTE (NIF, NOMBRE, APELLIDO1, APELLIDO2, CORREO, CUMPLEANOS) VALUES (:nif,:nombre,:apellido1,:apellido2,:correo,:cumpleanos)")
     @Modifying
     void insertCliente(String nif, String nombre, String apellido1, String apellido2, String correo, LocalDate cumpleanos);
+
 
 }

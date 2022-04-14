@@ -102,14 +102,27 @@ public class ClienteServiceImpl implements ClienteService {
         if(ocliente.isPresent()) {
             return "El cliente con NIF " + nif + " ya está registrado";
         }else{
-            Cliente cliente = ocliente.get();
+            Cliente cliente = new Cliente();
+            cliente.setNif(nif);
             cliente.setNombre(nombre);
             cliente.setApellido1(apellido1);
             cliente.setApellido2(apellido2);
             cliente.setCorreo(correo);
             cliente.setCumpleanos(cumpleanos);
             clienteRepository.insertCliente(cliente.getNif(), cliente.getNombre(), cliente.getApellido1(), cliente.getApellido2(),cliente.getCorreo(),cliente.getCumpleanos());
-            return "El cliente NIF " + nif + " se ha registrado correctamente";
+            return "El cliente con NIF " + nif + " se ha registrado correctamente";
+        }
+    }
+
+    @Override
+    @Transactional
+    public String deleteClientebyNif(String nif) {
+        Optional<Cliente> ocliente = clienteRepository.findById(nif);
+        if(ocliente.isPresent()) {
+            clienteRepository.deleteById(nif);
+            return "El cliente con NIF " + nif + " se ha eliminado correctamente";
+        }else{
+            return "No hay ningún cliente con NIF " + nif;
         }
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.validation.BindingResult;
 
 import java.time.LocalDate;
 import java.util.Iterator;
@@ -92,6 +91,13 @@ public class ClienteController {
     public ResponseEntity<String> insertCompareCliente(@PathVariable("nif") String nif, @PathVariable("nombre") String nombre, @PathVariable("apellido1") String apellido1,@PathVariable("apellido2") String apellido2,@PathVariable("correo") String correo,@PathVariable("cumpleanos") String cumpleanosStr) {
         LocalDate cumpleanos = LocalDate.parse(cumpleanosStr);
         String resultado = clienteServicio.insertAndCompareCliente(nif,nombre,apellido1,apellido2,correo,cumpleanos);
+        return ResponseEntity.ok().body(resultado);
+    }
+
+    @Transactional
+    @GetMapping("/clientes/delete/{nif}")
+    public ResponseEntity<String> deleteClienteNif(@PathVariable("nif") String nif) {
+        String resultado = clienteServicio.deleteClientebyNif(nif);
         return ResponseEntity.ok().body(resultado);
     }
 
