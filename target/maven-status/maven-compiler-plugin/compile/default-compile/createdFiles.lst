@@ -1,6 +1,7 @@
-com/example/demo/service/impl/ServiceRegistroImpl.class
-com/example/demo/controller/ControllerRegistro.class
-com/example/demo/service/ServiceRegistro.class
-com/example/demo/repository/TablaRegistroRepository.class
-com/example/demo/model/TablaRegistro.class
 com/example/demo/DemoApplication.class
+com/example/demo/controller/ClienteController.class
+com/example/demo/service/ClienteService.class
+com/example/demo/model/Cliente$ClienteBuilder.class
+com/example/demo/repository/ClienteRepository.class
+com/example/demo/model/Cliente.class
+com/example/demo/service/impl/ClienteServiceImpl.class

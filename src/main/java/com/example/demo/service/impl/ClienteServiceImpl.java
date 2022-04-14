@@ -1,0 +1,115 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.model.Cliente;
+import com.example.demo.repository.ClienteRepository;
+import com.example.demo.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+@Service
+public class ClienteServiceImpl implements ClienteService {
+
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @Override
+    @Transactional
+    public Cliente getClienteByNif(String nif) {
+        Cliente cliente = null;
+        Optional<Cliente> ocliente = clienteRepository.findById(nif);
+        if(ocliente.isPresent()){
+            cliente = ocliente.get();
+            return cliente;
+        }
+        return cliente;
+    }
+
+    @Override
+    @Transactional
+    public Cliente getClientebyNombreCompleto(String nombre, String apellido1, String apellido2) {
+        return clienteRepository.getClienteByNombreCompleto(nombre,apellido1,apellido2);
+    }
+
+    @Override
+    @Transactional
+    public Cliente getClientebyCorreo(String correo) {
+        return clienteRepository.getClienteByCorreo(correo);
+    }
+
+    @Override
+    @Transactional
+    public List<Cliente> getClientes() {
+        return StreamSupport.stream(clienteRepository.findAll().spliterator(), false).collect(Collectors.toUnmodifiableList());
+    }
+
+    @Override
+    @Transactional
+    public Cliente updateClienteNombreCompletobyNif(String nif, String nombre, String apellido1, String apellido2) {
+        Cliente cliente = null;
+        Optional<Cliente> ocliente = clienteRepository.findById(nif);
+        if(ocliente.isPresent()){
+            cliente = ocliente.get();
+            cliente.setNombre(nombre);
+            cliente.setApellido1(apellido1);
+            cliente.setApellido2(apellido2);
+            clienteRepository.updateClienteNombreCompletoByNif(cliente.getNombre(), cliente.getApellido1(), cliente.getApellido2(), cliente.getNif());
+            return cliente;
+        }
+        return cliente;
+    }
+
+    @Override
+    @Transactional
+    public Cliente updateClienteCorreobyNif(String nif, String correo) {
+        Cliente cliente = null;
+        Optional<Cliente> ocliente = clienteRepository.findById(nif);
+        if(ocliente.isPresent()){
+            cliente = ocliente.get();
+            cliente.setCorreo(correo);
+            clienteRepository.updateClienteCorreoByNif(cliente.getCorreo(), cliente.getNif());
+            return cliente;
+        }
+        return cliente;
+    }
+
+    @Override
+    @Transactional
+    public Cliente updateClienteCumpleanosbyNif(String nif, LocalDate cumpleanos) {
+        Cliente cliente = null;
+        Optional<Cliente> ocliente = clienteRepository.findById(nif);
+        if(ocliente.isPresent()){
+            cliente = ocliente.get();
+            cliente.setCumpleanos(cumpleanos);
+            clienteRepository.updateClienteCumpleanosByNif(cliente.getCumpleanos(), cliente.getNif());
+            return cliente;
+        }
+        return cliente;
+    }
+
+    @Override
+    @Transactional
+    public String insertAndCompareCliente(String nif, String nombre, String apellido1, String apellido2, String correo, LocalDate cumpleanos){
+        Optional<Cliente> ocliente = clienteRepository.findById(nif);
+        if(ocliente.isPresent()) {
+            return "El cliente con NIF " + nif + " ya está registrado";
+        }else{
+            Cliente cliente = ocliente.get();
+            cliente.setNombre(nombre);
+            cliente.setApellido1(apellido1);
+            cliente.setApellido2(apellido2);
+            cliente.setCorreo(correo);
+            cliente.setCumpleanos(cumpleanos);
+            clienteRepository.insertCliente(cliente.getNif(), cliente.getNombre(), cliente.getApellido1(), cliente.getApellido2(),cliente.getCorreo(),cliente.getCumpleanos());
+            return "El cliente NIF " + nif + " se ha registrado correctamente";
+        }
+    }
+}
