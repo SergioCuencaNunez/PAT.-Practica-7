@@ -9,11 +9,13 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClienteDTO {
+public class ReservaDTO {
+	private Long id;
 	private String nif;
-	private String nombre;
-	private String apellido1;
-	private String apellido2;
-	private String correo;
-	private LocalDate cumpleanos;
+	private String hitel;
+	private String destino;
+	private Long huespedes;
+	private Long habitaciojes;
+	private LocalDate fechaEntrada;
+	private LocalDate fechaSalida;
 }
