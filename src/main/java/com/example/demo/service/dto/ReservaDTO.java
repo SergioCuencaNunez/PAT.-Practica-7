@@ -12,10 +12,10 @@ import java.time.LocalDate;
 public class ReservaDTO {
 	private Long id;
 	private String nif;
-	private String hitel;
+	private String hotel;
 	private String destino;
 	private Long huespedes;
-	private Long habitaciojes;
+	private Long habitaciones;
 	private LocalDate fechaEntrada;
 	private LocalDate fechaSalida;
 }
