@@ -10,6 +10,7 @@ más importantes debido a que son los que comunican los repositorios con la capa
 en cada uno de ellos se describen los métodos necesarios para gestionar de manera correcta las funcionalidades pedidas por los controladores.
 
 Asimismo, en ellos se incluyen las operaciones ``JOIN`` que unen tablas según el atributo que tengan en común para tener de manera condensada la información que se refiere a un mismo dato. Se han realizado 3 ``INNER-JOIN``. El primero Cliente-Reserva, para tener cada
-cliente con su reserva correspondiente con NIF como atributo de unión; el segundo Hotel-Reserva, para que cada hotel disponga de las reservas realizadas en el mismo; y el último Hotel-Habitación, para que en cada hotel se muestre la información respectiva a sus habitaciones.
+cliente con su reserva correspondiente con NIF como atributo de unión; el segundo Hotel-Reserva, para que cada hotel disponga de las reservas realizadas en el mismo con el nombre del hotel como atributo común; y el último Hotel-Habitación, para que en cada hotel se muestre la información respectiva 
+a sus habitaciones y de nuevo con el nombre del hotel como atributo de unión.
 
 
