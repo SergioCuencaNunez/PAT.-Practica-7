@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ClienteService {
 
-    Cliente getClienteByNif(String nif);
+    Cliente getClientebyNif(String nif);
     Cliente getClientebyNombreCompleto(String nombre, String apellido1, String apellido2);
     Cliente getClientebyCorreo(String correo);
     List<Cliente> getClientes();

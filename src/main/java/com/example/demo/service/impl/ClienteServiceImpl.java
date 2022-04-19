@@ -27,7 +27,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     @Transactional
-    public Cliente getClienteByNif(String nif) {
+    public Cliente getClientebyNif(String nif) {
         Cliente cliente = null;
         Optional<Cliente> ocliente = clienteRepository.findById(nif);
         if(ocliente.isPresent()){

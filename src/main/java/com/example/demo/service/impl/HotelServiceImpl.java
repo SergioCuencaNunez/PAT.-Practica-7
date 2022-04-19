@@ -21,7 +21,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     @Transactional
-    public Hotel getHotelByNombre(String nombre) {
+    public Hotel getHotelbyNombre(String nombre) {
         Hotel hotel = null;
         Optional<Hotel> ohotel = hotelRepository.findById(nombre);
         if(ohotel.isPresent()){

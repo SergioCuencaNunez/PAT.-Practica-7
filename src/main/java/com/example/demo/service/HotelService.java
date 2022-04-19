@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface HotelService {
 
-    Hotel getHotelByNombre(String nombre);
+    Hotel getHotelbyNombre(String nombre);
     List<Hotel> getHotelesbyDestino(String destino);
     List<Hotel> getHotelesbyEstado(Boolean estado);
     List<Hotel> getHoteles();

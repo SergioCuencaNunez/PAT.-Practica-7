@@ -22,7 +22,7 @@ public class HotelController {
     @Transactional
     @GetMapping("/hoteles/nombre/{nombre}")
     public ResponseEntity<Hotel> getHotelNombre(@PathVariable("nombre") String nombre) {
-        Hotel hotel= hotelServicio.getHotelByNombre(nombre);
+        Hotel hotel= hotelServicio.getHotelbyNombre(nombre);
         if(hotel != null){
             return ResponseEntity.ok().body(hotel);
         }

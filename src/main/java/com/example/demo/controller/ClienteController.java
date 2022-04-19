@@ -24,7 +24,7 @@ public class ClienteController {
     @Transactional
     @GetMapping("/clientes/nif/{nif}")
     public ResponseEntity<Cliente> getClienteNif(@PathVariable("nif") String nif) {
-        Cliente cliente= clienteServicio.getClienteByNif(nif);
+        Cliente cliente= clienteServicio.getClientebyNif(nif);
         if(cliente != null){
             return ResponseEntity.ok().body(cliente);
         }

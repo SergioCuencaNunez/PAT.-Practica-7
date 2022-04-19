@@ -13,4 +13,24 @@ import java.util.Iterator;
 
 public interface ReservaRepository extends CrudRepository<Reserva, Long> {
 
+    @Query("SELECT* FROM RESERVA WHERE RESERVA.NIF= :nif")
+    public List<Reserva> getReservasByNif(String nif);
+
+    @Query("SELECT* FROM RESERVA WHERE RESERVA.DESTINO= :destino")
+    public List<Reserva> getReservasByDestino(String destino);
+
+    @Query("SELECT* FROM RESERVA WHERE RESERVA.HOTEL= :hotel")
+    public List<Reserva> getReservasByHotel(String hotel);
+
+    @Query("SELECT* FROM RESERVA WHERE RESERVA.HOTEL= :hotel AND RESERVA.FECHAENTRADA= :fechaEntrada")
+    public List<Reserva> getReservasByHotelFechaEntrada(String hotel, LocalDate fechaEntrada);
+
+    @Query("UPDATE RESERVA SET RESERVA.HOTEL= :hotel, RESERVA.DESTINO= :destino, RESERVA.HUESPEDES= :huespedes, RESERVA.HABITACIONES= :habitaciones, RESERVA.FECHAENTRADA= :fechaEntrada, RESERVA.FECHASALIDA= :fechaSalida WHERE RESERVA.ID= :id")
+    @Modifying
+    void updateReservaById(Long id,String hotel, String destino, Long huespedes, Long habitaciones, LocalDate fechaEntrada, LocalDate fechaSalida);
+
+    @Query("INSERT INTO RESERVA (ID, NIF, HOTEL, DESTINO, HUESPEDES, HABITACIONES, FECHAENTRADA, FECHASALIDA) VALUES (:id,:nif,:hotel,:destino,:huespedes,:habitaciones,:fechaEntrada,:fechaSalida)")
+    @Modifying
+    void insertReserva(Long id, String nif, String hotel, String destino, Long huespedes, Long habitaciones, LocalDate fechaEntrada, LocalDate fechaSalida);
+
 }
