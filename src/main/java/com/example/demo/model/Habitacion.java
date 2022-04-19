@@ -17,10 +17,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Table("HABITACION")
 public class Habitacion {
-    private @Column("NUMERO") @Id Long numero;
+    private @Column("TIPO") @Id String tipo;
+    private @Column("NUMERO") Long numero;
     private @Column("PLANTA") Long planta;
     private @Column("HOTEL") String hotel;
     private @Column("CAPACIDAD") Long capacidad;
-    private @Column("TIPO") String tipo;
     private @Column("ESTADO") Boolean estado;
 }

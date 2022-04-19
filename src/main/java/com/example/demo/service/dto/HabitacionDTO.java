@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HabitacionDTO {
+	private String tipo;
 	private Long numero;
 	private Long planta;
 	private String hotel;
 	private Long capacidad;
-	private String tipo;
 	private Boolean estado;
 }
