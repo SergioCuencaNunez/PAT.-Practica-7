@@ -103,8 +103,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional
     public String insertAndCompareCliente(String nif, String nombre, String apellido1, String apellido2, String correo, LocalDate cumpleanos){
         Optional<Cliente> ocliente = clienteRepository.findById(nif);
+        List<String> correos = clienteRepository.getClienteCorreos();
         if(ocliente.isPresent()) {
             return "El cliente con NIF " + nif + " ya está registrado";
+        }else if(correos.contains(correo)){
+           return "El cliente con correo " + correo + " ya está registrado";
         }else{
             Cliente cliente = new Cliente();
             cliente.setNif(nif);

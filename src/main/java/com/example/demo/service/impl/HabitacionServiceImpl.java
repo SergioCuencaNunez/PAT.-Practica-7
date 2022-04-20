@@ -1,6 +1,8 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.Habitacion;
+import com.example.demo.model.Hotel;
+import com.example.demo.repository.HotelRepository;
 import com.example.demo.repository.HabitacionRepository;
 import com.example.demo.service.HabitacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class HabitacionServiceImpl implements HabitacionService {
 
     @Autowired
     private HabitacionRepository habitacionRepository;
+
+    @Autowired
+    private HotelRepository hotelRepository;
 
     @Override
     @Transactional
@@ -100,8 +105,11 @@ public class HabitacionServiceImpl implements HabitacionService {
     @Transactional
     public String insertAndCompareHabitacion(String tipo, Long numero, Long planta, String hotel, Long capacidad, Boolean estado){
         Optional<Habitacion> ohabitacion = habitacionRepository.findById(tipo);
+        Optional<Hotel> ohotel = hotelRepository.findById(hotel);
         if(ohabitacion.isPresent()){
             return "La habitación " + tipo + " ya está registrada en el hotel " + hotel;
+        }else if(!ohotel.isPresent()){
+            return "No hay ningún hotel llamado " + hotel + " en los activos de Meliá Hotels International";
         }else{
             Habitacion habitacion = new Habitacion();
             habitacion.setTipo(tipo);

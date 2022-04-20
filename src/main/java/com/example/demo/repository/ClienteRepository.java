@@ -19,6 +19,9 @@ public interface ClienteRepository extends CrudRepository<Cliente, String> {
     @Query("SELECT* FROM CLIENTE WHERE CLIENTE.CORREO= :correo")
     public Cliente getClienteByCorreo(String correo);
 
+    @Query("SELECT CORREO FROM CLIENTE")
+    public List<String> getClienteCorreos();
+
     @Query("UPDATE CLIENTE SET CLIENTE.NOMBRE= :nombre , CLIENTE.APELLIDO1= :apellido1 , CLIENTE.APELLIDO2= :apellido2 WHERE CLIENTE.NIF= :nif ")
     @Modifying
     void updateClienteNombreCompletoByNif(String nombre, String apellido1, String apellido2, String nif);

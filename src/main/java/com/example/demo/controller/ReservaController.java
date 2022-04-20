@@ -53,7 +53,7 @@ public class ReservaController {
     }
 
     @Transactional
-    @GetMapping("/reservas/fecha/{hotel}/{fechaEntrada}")
+    @GetMapping("/reservas/hotel-fecha/{hotel}/{fechaEntrada}")
     public ResponseEntity<List<Reserva>> getReservasHotelFechaEntrada(@PathVariable("hotel") String hotel,@PathVariable("fechaEntrada") String fechaEntradaStr){
         LocalDate fechaEntrada = LocalDate.parse(fechaEntradaStr);
         List<Reserva> reservas = reservaServicio.getReservasbyHotelFechaEntrada(hotel, fechaEntrada);
