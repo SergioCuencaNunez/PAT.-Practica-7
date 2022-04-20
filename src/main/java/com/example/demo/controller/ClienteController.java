@@ -105,5 +105,4 @@ public class ClienteController {
         var reservas = clienteServicio.getClientesConReservas();
         return ResponseEntity.ok().body(reservas);
     }
-
 }

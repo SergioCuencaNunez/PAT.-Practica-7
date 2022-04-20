@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -19,6 +19,6 @@ public class HotelReservaDTO {
 	private String nif;
 	private Long huespedes;
 	private Long habitaciones;
-	private LocalDate fechaEntrada;
-	private LocalDate fechaSalida;
+	private LocalDateTime fechaEntrada;
+	private LocalDateTime fechaSalida;
 }

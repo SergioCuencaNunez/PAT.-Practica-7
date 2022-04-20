@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Hotel;
 import com.example.demo.service.HotelService;
+import com.example.demo.service.dto.ClienteReservaDTO;
+import com.example.demo.service.dto.HotelHabitacionDTO;
+import com.example.demo.service.dto.HotelReservaDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -99,5 +102,21 @@ public class HotelController {
     public ResponseEntity<String> deleteHotelNombre(@PathVariable("nombre") String nombre) {
         String resultado = hotelServicio.deleteHotelbyNombre(nombre);
         return ResponseEntity.ok().body(resultado);
+    }
+
+    // INNER-JOIN
+    @Transactional
+    @GetMapping("/hoteles/reservas")
+    public ResponseEntity<List<HotelReservaDTO>> getHotelesReservas() {
+        var reservas = hotelServicio.getHotelesConReservas();
+        return ResponseEntity.ok().body(reservas);
+    }
+
+    // INNER-JOIN
+    @Transactional
+    @GetMapping("/hoteles/habitaciones")
+    public ResponseEntity<List<HotelHabitacionDTO>> getHotelesHabitaciones() {
+        var habitaciones = hotelServicio.getHotelesConHabitaciones();
+        return ResponseEntity.ok().body(habitaciones);
     }
 }
